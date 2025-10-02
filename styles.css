@@ -9,15 +9,17 @@
     --primary-dark: #4f46e5;
     --secondary: #8b5cf6;
     --accent: #ec4899;
-    --dark: #0f172a;
+    --dark: #0a0e27;
     --dark-800: #1e293b;
     --dark-700: #334155;
     --gray: #64748b;
     --gray-light: #94a3b8;
     --bg-light: #f8fafc;
+    --bg-lighter: #fefeff;
     --white: #ffffff;
     --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     --gradient-accent: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    --gradient-hero: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%);
 }
 
 html {
@@ -145,7 +147,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--dark);
+    background: var(--gradient-hero);
     z-index: -1;
 }
 
@@ -386,11 +388,21 @@ body {
     border-color: rgba(255, 255, 255, 0.8);
 }
 
+.hero-trust {
+    margin: 2rem 0;
+}
+
+.trust-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
 .hero-actions {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .btn {
@@ -456,7 +468,7 @@ body {
 /* Why Choose Section */
 .why-choose {
     padding: 120px 0;
-    background: var(--bg-light);
+    background: var(--bg-lighter);
 }
 
 .why-choose-container {
@@ -475,15 +487,33 @@ body {
 .benefit-card {
     background: var(--white);
     border: 1px solid #e2e8f0;
-    border-radius: 20px;
+    border-radius: 24px;
     padding: 2.5rem;
-    transition: all 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.benefit-card:hover::before {
+    opacity: 1;
 }
 
 .benefit-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 60px rgba(99, 102, 241, 0.12);
-    border-color: var(--primary);
+    transform: translateY(-8px);
+    box-shadow: 0 25px 70px rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.3);
 }
 
 .benefit-icon {
@@ -495,6 +525,18 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s ease;
+}
+
+.benefit-card:hover .benefit-icon {
+    background: var(--gradient-primary);
+    transform: scale(1.05);
+}
+
+.benefit-card:hover .benefit-icon svg {
+    color: var(--white);
 }
 
 .benefit-icon svg {
@@ -508,12 +550,16 @@ body {
     font-weight: 700;
     color: var(--dark-800);
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .benefit-card p {
     font-size: 1rem;
     color: var(--gray);
     line-height: 1.7;
+    position: relative;
+    z-index: 1;
 }
 
 /* Services Section */
